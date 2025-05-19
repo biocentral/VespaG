@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import math
 import numpy as np
 import sklearn.preprocessing
@@ -16,8 +17,16 @@ MODEL_VERSION = "v2"
 
 # TODO make this more elegant, e.g. through .npz file
 # write test that Spearman on PG stays the same
-raw_score_cdf = np.loadtxt("data/score_transformation/vespag_scores.csv", delimiter=",")
-sorted_gemme_scores = np.loadtxt("data/score_transformation/sorted_gemme_scores.csv", delimiter=",")
+import os
+
+# Get the directory where this utils.py file is located
+PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Load files relative to this module's location
+raw_score_cdf = np.loadtxt(os.path.join(PACKAGE_DIR, "data/score_transformation/vespag_scores.csv"),
+                           delimiter=",")
+sorted_gemme_scores = np.loadtxt(os.path.join(PACKAGE_DIR, "data/score_transformation/sorted_gemme_scores.csv"),
+                                 delimiter=",")
 
 
 def transform_scores(scores: np.typing.ArrayLike[float]) -> list[float]:

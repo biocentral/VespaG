@@ -25,9 +25,12 @@ More details on **VespaG** can be found in the corresponding [publication](https
 **This is a deployment branch for VespaG, 
 created primarily for usage in [biocentral](https://github.com/biocentral/biocentral_server/).** 
 
-*Kept API Files:*
+*Kept API files:*
 - `vespag/utils/mutations.py`: Dataclasses for SAVs/Mutations
 - `vespag/utils/utils.py`: ScoreNormalizer, mask mutations and compute mutation scores
+
+*Moved data files:*
+- `data/score_transformation` -> `vespag/utils/data/score_transformation` to be kept in the python package
 
 ## Preprint Citation
 If you find VespaG helpful in your work, please be so kind as to cite our publication:
