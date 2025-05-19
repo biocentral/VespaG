@@ -1,14 +1,11 @@
 from __future__ import annotations
 
-from collections import defaultdict
-from dataclasses import dataclass
-from pathlib import Path
-from typing import Union
-
-import polars as pl
-import rich
 import torch
+import numpy as np
+
 from jaxtyping import Float
+from dataclasses import dataclass
+from .type_hinting import EmbeddingType
 
 from .utils import AMINO_ACIDS, GEMME_ALPHABET, ScoreNormalizer, transform_scores
 
@@ -75,14 +72,6 @@ def mask_non_mutations(
     return gemme_prediction
 
 
-def read_mutation_file(mutation_file: Path, one_indexed: bool = False) -> dict[str, list[SAV]]:
-    mutations_per_protein = defaultdict(list)
-    for row in pl.read_csv(mutation_file).iter_rows():
-        mutations_per_protein[row[0]].append(Mutation.from_mutation_string(row[1], one_indexed))
-
-    return mutations_per_protein
-
-
 def compute_mutation_score(
     substitution_score_matrix: Float[np.typing.ArrayLike, "length 20"],
     mutation: Mutation | SAV,
@@ -90,7 +79,7 @@ def compute_mutation_score(
     transform: bool = True,
     embedding_type: EmbeddingType = "esm2",
     normalizer: ScoreNormalizer | None = None,
-    pbar: rich.progress.Progress | None = None,
+    pbar = None,
     progress_id: int | None = None,
 ) -> float:
     if pbar:
