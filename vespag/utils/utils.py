@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import math
 import numpy as np
 import sklearn.preprocessing
@@ -15,11 +16,18 @@ AMINO_ACIDS = sorted(GEMME_ALPHABET)
 MODEL_VERSION = "v2"
 
 # TODO make this more elegant, e.g. through .npz file
+
+# Get the directory where this utils.py file is located
+PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 raw_vespag_scores = {
-    "esm2": np.sort(np.loadtxt("data/score_transformation/vespag_scores.csv", delimiter=",")),
-    "prott5": np.sort(np.loadtxt("data/score_transformation/vespag_scores_prott5.csv", delimiter=","))
+    "esm2": np.sort(np.loadtxt(os.path.join(PACKAGE_DIR, "data/score_transformation/vespag_scores.csv"),
+                               delimiter=",")),
+    "prott5": np.sort(np.loadtxt(os.path.join(PACKAGE_DIR, "data/score_transformation/vespag_scores_prott5.csv"),
+                                 delimiter=","))
 }
-gemme_scores = np.sort(np.loadtxt("data/score_transformation/sorted_gemme_scores.csv", delimiter=","))
+gemme_scores = np.sort(np.loadtxt(os.path.join(PACKAGE_DIR, "data/score_transformation/sorted_gemme_scores.csv")
+                                  , delimiter=","))
 target_space = np.linspace(0, 1, len(gemme_scores))
 
 
