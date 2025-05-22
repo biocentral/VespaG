@@ -17,7 +17,6 @@ MODEL_VERSION = "v2"
 
 # TODO make this more elegant, e.g. through .npz file
 # write test that Spearman on PG stays the same
-import os
 
 # Get the directory where this utils.py file is located
 PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
