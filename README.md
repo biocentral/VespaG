@@ -32,8 +32,7 @@ created primarily for usage in [biocentral](https://github.com/biocentral/biocen
 *Moved data files:*
 - `data/score_transformation` -> `vespag/utils/data/score_transformation` to be kept in the python package
 
-## Preprint Citation
-If you find VespaG helpful in your work, please be so kind as to cite our publication:
+### How to cite
 ```
 @article{10.1093/bioinformatics/btae621,
     author = {Marquet, Céline and Schlensok, Julius and Abakarova, Marina and Rost, Burkhard and Laine, Elodie},
