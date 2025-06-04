@@ -8,6 +8,7 @@ import sklearn.preprocessing
 from typing import Literal, Iterable
 from collections.abc import Sequence
 
+from .type_hinting import EmbeddingType
 
 GEMME_ALPHABET = "ACDEFGHIKLMNPQRSTVWY"
 VESPA_ALPHABET = "ALGVSREDTIPKFQNYMHWC"
